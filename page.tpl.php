@@ -63,7 +63,7 @@
  * - $page['sidebar_second']: Items for the second sidebar.
  * - $page['header']: Items for the header region.
  * - $page['footer']: Items for the footer region.
- * 
+ *
  * @see template_preprocess()
  * @see template_preprocess_page()
  * @see template_process()
@@ -152,24 +152,13 @@
   <?php if ($page['triptych_first']): ?>
     <div id="triptych-wrapper"><div id="triptych" class="clearfix">
 
-      <?php if ($page['triptych_first']): ?>
-        <div id="triptych-first" class="region triptych"><div class="section">
-          <?php print render($page['triptych_first']); ?>
-        </div></div> <!-- /.section, /#triptych-first -->
-      <?php endif; ?>
-
-      <?php if ($page['triptych_middle']): ?>
-        <div id="triptych-middle" class="region triptych"><div class="section">
-          <?php print render($page['triptych_middle']); ?>
-        </div></div> <!-- /.section, /#triptych-middle -->
-      <?php endif; ?>    
-
-      <?php if ($page['triptych_last']): ?>
-        <div id="triptych-last" class="region triptych"><div class="section">
-          <?php print render($page['triptych_last']); ?>
-        </div></div> <!-u- /.section, /#triptych-last -->
-      <?php endif; ?>      
-      
+      <?php foreach (array('first', 'middle', 'last') as $key): ?>
+        <?php if ($page["triptych_$key"]): ?>
+          <div id="triptych-<?php print $key; ?>" class="region triptych"><div class="section">
+            <?php print render($page["triptych_$key"]); ?>
+          </div></div> <!-- /.section, /#triptych-first -->
+        <?php endif; ?>
+      <?php endforeach; ?>
     </div></div> <!-- /#triptych, /#triptych-wrapper -->
   <?php endif; ?>
 
@@ -177,33 +166,33 @@
 
    <?php if ($page['footer_firstcolumn']): ?>  <!-- This should be a 4-part statement w/ ORs -->
    <div id="footer-columns" class="container-12 clearfix">
-    
+
       <?php if ($page['footer_firstcolumn']): ?>
         <div id="footer-firstcolumn" class="region sitemap grid-3"><div class="section">
           <?php print render($page['footer_firstcolumn']); ?>
         </div></div> <!-- /.section, /#footer-firstcolumn -->
-      <?php endif; ?>           
-      
+      <?php endif; ?>
+
       <?php if ($page['footer_secondcolumn']): ?>
         <div id="footer-secondcolumn" class="region sitemap grid-3"><div class="section">
           <?php print render($page['footer_secondcolumn']); ?>
         </div></div> <!-- /.section, /#footer-secondcolumn -->
-      <?php endif; ?>  
-      
+      <?php endif; ?>
+
       <?php if ($page['footer_thirdcolumn']): ?>
         <div id="footer-thirdcolumn" class="region sitemap grid-3"><div class="section">
           <?php print render($page['footer_thirdcolumn']); ?>
         </div></div> <!-- /.section, /#footer-thirdcolumn -->
-      <?php endif; ?>  
-      
+      <?php endif; ?>
+
       <?php if ($page['footer_fourthcolumn']): ?>
         <div id="footer-fourthcolumn" class="region sitemap grid-3"><div class="section">
           <?php print render($page['footer_fourthcolumn']); ?>
         </div></div> <!-- /.section, /#footer-fourthcolumn -->
-      <?php endif; ?>  
+      <?php endif; ?>
 
     </div><!-- /#footer-columns -->
-    <?php endif; ?>  
+    <?php endif; ?>
 
     <div id="footer" class="container-12 clearfix">
       <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links', 'clearfix')), 'heading' => t('Secondary menu'))); ?>
