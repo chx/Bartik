@@ -156,7 +156,7 @@
         <?php if ($page["triptych_$key"]): ?>
           <div id="triptych-<?php print $key; ?>" class="region triptych"><div class="section">
             <?php print render($page["triptych_$key"]); ?>
-          </div></div> <!-- /.section, /#triptych-first -->
+          </div></div> <!-- /.section, /#triptych-$key -->
         <?php endif; ?>
       <?php endforeach; ?>
     </div></div> <!-- /#triptych, /#triptych-wrapper -->
@@ -167,30 +167,13 @@
    <?php if ($page['footer_firstcolumn']): ?>  <!-- This should be a 4-part statement w/ ORs -->
    <div id="footer-columns" class="container-12 clearfix">
 
-      <?php if ($page['footer_firstcolumn']): ?>
-        <div id="footer-firstcolumn" class="region sitemap grid-3"><div class="section">
-          <?php print render($page['footer_firstcolumn']); ?>
-        </div></div> <!-- /.section, /#footer-firstcolumn -->
-      <?php endif; ?>
-
-      <?php if ($page['footer_secondcolumn']): ?>
-        <div id="footer-secondcolumn" class="region sitemap grid-3"><div class="section">
-          <?php print render($page['footer_secondcolumn']); ?>
-        </div></div> <!-- /.section, /#footer-secondcolumn -->
-      <?php endif; ?>
-
-      <?php if ($page['footer_thirdcolumn']): ?>
-        <div id="footer-thirdcolumn" class="region sitemap grid-3"><div class="section">
-          <?php print render($page['footer_thirdcolumn']); ?>
-        </div></div> <!-- /.section, /#footer-thirdcolumn -->
-      <?php endif; ?>
-
-      <?php if ($page['footer_fourthcolumn']): ?>
-        <div id="footer-fourthcolumn" class="region sitemap grid-3"><div class="section">
-          <?php print render($page['footer_fourthcolumn']); ?>
-        </div></div> <!-- /.section, /#footer-fourthcolumn -->
-      <?php endif; ?>
-
+      <?php foreach (array('firstcolumn', 'secondcolumn', 'thirdcolumn', 'fourthcolumn') as $key): ?>
+        <?php if ($page["footer_$key"]): ?>
+          <div id="footer-<?php print $key; ?>" class="region sitemap grid-3"><div class="section">
+            <?php print render($page["footer_$key"]); ?>
+          </div></div> <!-- /.section, /#footer-$key -->
+        <?php endif; ?>
+      <?php endforeach; ?>
     </div><!-- /#footer-columns -->
     <?php endif; ?>
 
